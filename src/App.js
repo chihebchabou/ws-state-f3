@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import Counter from './components/Counter';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    isVisisble: false,
+  };
+
+  toggleVisibility = () =>
+    this.setState({ isVisisble: !this.state.isVisisble });
+
+  render() {
+    return (
+      <div className="App">
+        <button className="visibility-btn" onClick={this.toggleVisibility}>
+          {this.state.isVisisble ? 'Hide' : 'Show'} Counter
+        </button>
+        {/* {this.state.isVisisble ? <Counter /> : ''} */}
+        {this.state.isVisisble && <Counter title="Workshop State" />}
+      </div>
+    );
+  }
 }
 
 export default App;
